@@ -1,0 +1,412 @@
+/* Playstation Design System - RTL Mode */
+
+:root {
+    /* Brand Colors */
+    --ps-blue: #0070cc;
+    --ps-cyan: #1eaedb;
+    --ps-black: #000000;
+    --ps-white: #ffffff;
+    --ps-ice: #f5f7fa;
+    --ps-orange: #d53b00;
+    --ps-orange-active: #aa2f00;
+
+    /* Text Colors */
+    --text-display: #000000;
+    --text-body: #1f1f1f;
+    --text-mute: #6b6b6b;
+    --text-inverse: #ffffff;
+    --text-error: #c81b3a;
+
+    /* Surfaces & Backgrounds */
+    --bg-main: var(--ps-white);
+    --bg-masthead: var(--ps-black);
+    --bg-footer: var(--ps-blue);
+    --border-light: #f3f3f3;
+
+    /* Depths / Shadows */
+    --shadow-06: 0 5px 9px 0 rgba(0, 0, 0, 0.06);
+    --shadow-08: 0 5px 9px 0 rgba(0, 0, 0, 0.08);
+    --shadow-16: 0 5px 9px 0 rgba(0, 0, 0, 0.16);
+    --shadow-80: 0 5px 9px 0 rgba(0, 0, 0, 0.8);
+    --ring-focus: 0 0 0 2px var(--ps-blue);
+    --ring-hover: 0 0 0 2px var(--ps-cyan);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Tajawal', 'Inter', sans-serif;
+    background-color: var(--ps-ice);
+    color: var(--text-body);
+    line-height: 1.5;
+    direction: rtl; /* Arabic RTL */
+}
+
+/* Typography Hierarchy */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-display);
+}
+
+.display-xl { font-size: 36px; font-weight: 300; line-height: 1.25; letter-spacing: -0.1px; }
+.display-l  { font-size: 28px; font-weight: 300; line-height: 1.25; letter-spacing: 0.1px; }
+.display-m  { font-size: 22px; font-weight: 300; line-height: 1.25; }
+.page-title { font-size: 22px; font-weight: 600; line-height: 1.25; color: var(--ps-black); }
+
+/* ── TOP NAVBAR ─────────────────────────────── */
+.navbar {
+    background-color: #ffffff;
+    border-bottom: 2px solid var(--border-light);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow-08);
+}
+
+.navbar-inner {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 20px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+.navbar-logo {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--ps-black);
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+.navbar-logo i {
+    color: var(--ps-blue);
+    width: 16px;
+    height: 16px;
+}
+
+.navbar-links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.navbar-links li a {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 10px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-mute);
+    text-decoration: none;
+    border-radius: 0;
+    transition: all 180ms ease;
+    border-bottom: 2px solid transparent;
+    height: 42px;
+}
+
+.navbar-links li a i {
+    width: 13px;
+    height: 13px;
+}
+
+.navbar-links li a:hover {
+    color: var(--ps-blue);
+    background: rgba(0, 112, 204, 0.05);
+}
+
+.navbar-links li a.nav-active {
+    color: var(--ps-blue);
+    border-bottom: 2px solid var(--ps-blue);
+    font-weight: 700;
+}
+
+/* Hamburger (mobile only) */
+.hamburger {
+    display: none;
+    margin-right: auto;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--ps-black);
+    padding: 4px;
+}
+
+.hamburger i {
+    width: 20px;
+    height: 20px;
+}
+
+/* Mobile dropdown */
+.mobile-nav {
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    border-top: 1px solid var(--border-light);
+    box-shadow: var(--shadow-16);
+    padding: 8px 0;
+}
+
+.mobile-nav a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 24px;
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--text-body);
+    text-decoration: none;
+    border-right: 4px solid transparent;
+    transition: all 180ms;
+}
+
+.mobile-nav a:hover {
+    background: rgba(0, 112, 204, 0.05);
+    color: var(--ps-blue);
+}
+
+.mobile-nav a.nav-active {
+    color: var(--ps-blue);
+    border-right: 4px solid var(--ps-blue);
+    background: rgba(0, 112, 204, 0.05);
+    font-weight: 700;
+}
+
+/* ── MAIN CONTENT ───────────────────────────── */
+.main-content {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 20px 28px;
+    min-height: calc(100vh - 42px);
+    background: linear-gradient(to bottom, var(--ps-white), var(--ps-ice));
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+/* Buttons (The Playstation Signature Hover) */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    padding: 8px 16px;
+    border-radius: 0;
+    border: none;
+    cursor: pointer;
+    transition: all 180ms ease;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background-color: var(--ps-blue);
+    color: var(--ps-white);
+}
+
+.btn-primary:hover {
+    background-color: var(--ps-blue-dark, #0056b3);
+    color: var(--ps-white);
+    opacity: 0.9;
+}
+
+.btn-primary:active {
+    opacity: 0.6;
+}
+
+.btn-commerce {
+    background-color: var(--ps-orange);
+    color: var(--ps-white);
+    font-weight: 700;
+}
+
+.btn-commerce:hover {
+    opacity: 0.9;
+}
+
+.btn-commerce:active {
+    background-color: var(--ps-orange-active);
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: var(--ps-blue);
+    border: 2px solid var(--ps-blue);
+}
+
+.btn-outline:hover {
+    background-color: var(--ps-cyan);
+    color: var(--ps-white);
+    border: 2px solid var(--ps-white);
+    box-shadow: 0 0 0 2px var(--ps-blue);
+    transform: scale(1.15);
+}
+
+.btn-sm {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 5px 10px;
+}
+
+.btn-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 0;
+    padding: 0;
+}
+
+/* Cards (Editorial Panels) */
+.card {
+    background-color: var(--ps-white);
+    border-radius: 0;
+    padding: 20px 24px;
+    box-shadow: var(--shadow-06);
+    margin-bottom: 16px;
+    transition: box-shadow 200ms ease;
+}
+
+.card:hover {
+    box-shadow: var(--shadow-08);
+}
+
+/* Grid System */
+.grid {
+    display: grid;
+    gap: 24px;
+}
+
+.grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+/* Forms */
+.form-group {
+    margin-bottom: 14px;
+}
+
+.form-label {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-body);
+    margin-bottom: 5px;
+}
+
+.form-input {
+    width: 100%;
+    background-color: var(--ps-white);
+    border: 1px solid #cccccc;
+    border-radius: 0;
+    padding: 8px 12px;
+    font-size: 13px;
+    color: var(--text-body);
+    transition: all 180ms ease;
+    font-family: inherit;
+}
+
+.form-input::placeholder {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.form-input:focus {
+    outline: none;
+    box-shadow: var(--ring-focus);
+    border-color: #cccccc;
+}
+
+/* Tables */
+.table-container {
+    overflow-x: auto;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th {
+    text-align: right;
+    padding: 10px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-mute);
+    border-bottom: 2px solid var(--border-light);
+}
+
+.table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border-light);
+    color: var(--text-body);
+    font-size: 13px;
+    vertical-align: middle;
+}
+
+/* Alerts & Badges */
+.badge {
+    padding: 3px 8px;
+    border-radius: 0;
+    font-size: 12px;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.badge-warning { background-color: rgba(213, 59, 0, 0.1); color: var(--ps-orange); } /* Commerce orange used for warnings here */
+.badge-success { background-color: rgba(0, 112, 204, 0.1); color: var(--ps-blue); }
+.badge-danger { background-color: rgba(200, 27, 58, 0.1); color: var(--text-error); }
+
+/* ── RESPONSIVE ─────────────────────────────── */
+@media (max-width: 900px) {
+    .navbar-links {
+        display: none;
+    }
+    .hamburger {
+        display: flex;
+    }
+    .navbar-inner {
+        padding: 0 12px;
+    }
+    .main-content {
+        padding: 16px 12px;
+    }
+    .grid-cols-3, .grid-cols-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .grid-cols-2, .grid-cols-3, .grid-cols-4 {
+        grid-template-columns: 1fr;
+    }
+    .page-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 16px;
+    }
+    .display-xl { font-size: 35px; }
+    .page-title { font-size: 24px; }
+}
