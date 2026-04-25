@@ -160,7 +160,7 @@
 
 <script>
     function addToCart(productId) {
-        fetch('{{ route('pos.add') }}', {
+        fetch('/pos/add', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -179,7 +179,7 @@
     }
 
     function removeFromCart(productId) {
-        fetch('{{ route('pos.remove') }}', {
+        fetch('/pos/remove', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -235,7 +235,7 @@
         btn.disabled = true;
         btn.innerText = 'جاري المعالجة...';
 
-        fetch('{{ route('pos.checkout') }}', {
+        fetch('/pos/checkout', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
