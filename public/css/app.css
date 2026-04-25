@@ -38,6 +38,16 @@
     box-sizing: border-box;
 }
 
+/* Prevent double-tap to zoom on interactive elements (fixes iOS/Android zooming) */
+a, button, input, select, textarea, .btn {
+    touch-action: manipulation;
+}
+
+/* Ensure inputs are at least 16px to prevent iOS Safari auto-zoom on focus */
+input, select, textarea {
+    font-size: 16px !important;
+}
+
 body {
     font-family: 'Tajawal', 'Inter', sans-serif;
     background-color: var(--ps-ice);
