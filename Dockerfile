@@ -51,6 +51,9 @@ RUN mkdir -p /var/www/html/storage/app \
     && touch /var/www/html/storage/app/database.sqlite \
     && chown -R www-data:www-data /var/www/html/storage
 
+ENV DB_CONNECTION=sqlite
+ENV DB_DATABASE=/var/www/html/storage/app/database.sqlite
+
 # Run migrations and cache config
 RUN php artisan migrate --force \
     && php artisan config:cache \
