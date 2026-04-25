@@ -56,7 +56,6 @@ ENV DB_DATABASE=/var/www/html/storage/app/database.sqlite
 
 # Run migrations and cache config
 RUN php artisan migrate --force \
-    && php artisan config:cache \
     && php artisan route:cache \
     && php artisan view:cache
 
