@@ -19,7 +19,3 @@ services:
         value: /var/lib/sqlite/database.sqlite
       - key: LOG_CHANNEL
         value: stderr
-    disk:
-      name: sqlite_data
-      mountPath: /var/lib/sqlite
-      sizeGB: 1
