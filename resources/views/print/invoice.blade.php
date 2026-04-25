@@ -96,10 +96,29 @@
         @media print {
             body { background: #ffffff; }
             .invoice-box { box-shadow: none; padding: 0; border-radius: 0; }
+            .no-print { display: none !important; }
+        }
+        .btn-back {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #0070cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .btn-back:hover {
+            background: #005fa3;
         }
     </style>
 </head>
 <body onload="window.print()">
+    <div class="no-print" style="text-align: right; max-width: 800px; margin: 0 auto;">
+        <a href="{{ route('pos.index') }}" class="btn-back">← العودة لشاشة الكاشير</a>
+        <button onclick="window.print()" class="btn-back" style="background: #10b981; margin-right: 10px;">🖨️ طباعة الفاتورة</button>
+    </div>
     <div class="invoice-box">
         <div class="header">
             <div class="store-info">
