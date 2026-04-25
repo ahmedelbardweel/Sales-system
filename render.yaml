@@ -1,7 +1,7 @@
 services:
   - type: web
     name: sales-system
-    runtime: php
+    env: php
     buildCommand: bash build.sh
     startCommand: vendor/bin/heroku-php-apache2 public/
     envVars:
