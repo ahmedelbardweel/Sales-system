@@ -2,12 +2,18 @@
 
 @section('content')
 <div class="container">
-    <div class="page-header">
-        <h1 class="page-title">إدارة الزبائن والديون</h1>
-        <button onclick="toggleModal('add-customer-modal')" class="btn btn-primary">
-            <i data-lucide="user-plus"></i>
-            إضافة زبون جديد
-        </button>
+    <div class="page-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+        <h1 class="page-title" style="margin: 0;">إدارة الزبائن والديون</h1>
+        <div style="display: flex; gap: 10px;">
+            <a href="{{ route('print.customers') }}" target="_blank" class="btn btn-primary" style="background: #10b981; border-color: #10b981; display: flex; align-items: center; gap: 8px;">
+                <i data-lucide="printer"></i>
+                طباعة ديون السوق
+            </a>
+            <button onclick="toggleModal('add-customer-modal')" class="btn btn-primary" style="display: flex; align-items: center; gap: 8px;">
+                <i data-lucide="user-plus"></i>
+                إضافة زبون جديد
+            </button>
+        </div>
     </div>
 
     @if (session()->has('message'))

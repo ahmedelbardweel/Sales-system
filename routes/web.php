@@ -56,4 +56,7 @@ Route::get('/print/summary', function () {
     
     return view('print.summary', compact('cashProfit', 'debtProfit', 'debtPayments', 'totalCashIn', 'today'));
 });
-
+Route::get('/print/customers', function () {
+    $customers = App\Models\Customer::orderBy('total_debt', 'desc')->get();
+    return view('print.customers', compact('customers'));
+})->name('print.customers');
