@@ -16,7 +16,16 @@ class Product extends Model
         'selling_price_item',
         'cartons_stock',
         'items_stock',
+        'image_path',
     ];
+
+    public function getImageUrlAttribute()
+    {
+        if ($this->image_path) {
+            return asset('storage/' . $this->image_path);
+        }
+        return null;
+    }
 
     public function getPurchasePriceItemAttribute()
     {

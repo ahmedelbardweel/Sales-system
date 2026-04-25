@@ -57,7 +57,8 @@ ENV DB_DATABASE=/var/www/html/storage/app/database.sqlite
 # Run migrations and cache config
 RUN php artisan migrate --force \
     && php artisan route:cache \
-    && php artisan view:cache
+    && php artisan view:cache \
+    && php artisan storage:link
 
 # Change port to 10000 for Render
 RUN sed -i 's/80/10000/g' /etc/apache2/sites-available/000-default.conf /etc/apache2/ports.conf

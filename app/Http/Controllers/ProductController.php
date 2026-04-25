@@ -22,9 +22,15 @@ class ProductController extends Controller
             'items_per_carton' => 'required|integer|min:1',
             'selling_price_item' => 'required|numeric|min:0',
             'initial_cartons' => 'required|integer|min:0',
+            'image' => 'nullable|image|max:2048',
         ]);
 
-        $product = Product::create($validated);
+        $data = $validated;
+        if ($request->hasFile('image')) {
+            $data['image_path'] = $request->file('image')->store('products', 'public');
+        }
+
+        $product = Product::create($data);
 
         // Log Activity
         ActivityLog::create([
@@ -43,9 +49,19 @@ class ProductController extends Controller
             'purchase_price_carton' => 'required|numeric|min:0',
             'items_per_carton' => 'required|integer|min:1',
             'selling_price_item' => 'required|numeric|min:0',
+            'image' => 'nullable|image|max:2048',
         ]);
 
-        $product->update($validated);
+        $data = $validated;
+        if ($request->hasFile('image')) {
+            // Delete old image if needed
+            if ($product->image_path) {
+                \Illuminate\Support\Facades\Storage::disk('public')->delete($product->image_path);
+            }
+            $data['image_path'] = $request->file('image')->store('products', 'public');
+        }
+
+        $product->update($data);
 
         return redirect()->back()->with('message', 'تم تحديث الصنف بنجاح.');
     }

@@ -22,7 +22,14 @@
                 <div id="product-grid" class="product-grid">
                     @foreach($products as $product)
                     <div class="product-card" data-name="{{ $product->name }}" style="border: 1px solid #eee; padding: 8px; text-align: center; transition: 0.2s; display: flex; flex-direction: column; background: #fff; height: 100%;">
-                        <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center; min-height: 70px;">
+                        <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 70px;">
+                            @if($product->image_url)
+                                <img src="{{ $product->image_url }}" alt="{{ $product->name }}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 8px; margin-bottom: 6px;">
+                            @else
+                                <div style="width: 50px; height: 50px; background: #f1f5f9; border-radius: 8px; margin-bottom: 6px; display: flex; align-items: center; justify-content: center;">
+                                    <i data-lucide="image" style="color: #cbd5e1; width: 24px; height: 24px;"></i>
+                                </div>
+                            @endif
                             <h4 style="font-size: 12px; font-weight: 700; margin-bottom: 3px; color: #000; line-height: 1.2;">{{ $product->name }}</h4>
                             <div style="color: var(--ps-blue); font-weight: 800; font-size: 14px; margin-bottom: 3px;">₪{{ number_format($product->selling_price_item, 2) }}</div>
                             <div style="font-size: 9px; color: #64748b;">المخزون: {{ $product->total_items_stock }}</div>

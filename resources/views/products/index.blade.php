@@ -19,7 +19,7 @@
     <!-- Add Product Form (Modal) -->
     <div id="add-product-modal" class="card" style="display: none; border-right: 4px solid var(--ps-blue); margin-bottom: 32px;">
         <h3 style="margin-bottom: 24px; font-size: 22px; font-weight: 500;">تفاصيل الصنف الجديد</h3>
-        <form action="{{ route('products.store') }}" method="POST">
+        <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="grid grid-cols-2">
                 <div class="form-group">
@@ -46,6 +46,11 @@
                     <label class="form-label">سعر مبيع الحبة ₪</label>
                     <input type="number" step="0.01" name="selling_price_item" class="form-input" required>
                 </div>
+
+                <div class="form-group">
+                    <label class="form-label">صورة المنتج (اختياري)</label>
+                    <input type="file" name="image" class="form-input" accept="image/*">
+                </div>
             </div>
             
             <div style="display: flex; gap: 16px; margin-top: 16px;">
@@ -59,7 +64,16 @@
         @forelse($products as $product)
             <div class="card" style="padding: 16px; position: relative; border-top: 3px solid var(--ps-blue); display: flex; flex-direction: column; gap: 10px;">
                 <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-                    <h3 style="margin: 0; font-size: 18px; font-weight: 800; color: var(--ps-blue);">{{ $product->name }}</h3>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        @if($product->image_url)
+                            <img src="{{ $product->image_url }}" alt="{{ $product->name }}" style="width: 40px; height: 40px; object-fit: cover; border-radius: 8px; border: 1px solid #eee;">
+                        @else
+                            <div style="width: 40px; height: 40px; background: #f1f5f9; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                                <i data-lucide="image" style="color: #94a3b8; width: 20px; height: 20px;"></i>
+                            </div>
+                        @endif
+                        <h3 style="margin: 0; font-size: 18px; font-weight: 800; color: var(--ps-blue);">{{ $product->name }}</h3>
+                    </div>
                     <div style="display: flex; gap: 4px;">
                         <button onclick="toggleModal('edit-product-modal-{{ $product->id }}')" style="background: rgba(0, 112, 204, 0.1); border: none; color: var(--ps-blue); cursor: pointer; padding: 8px; border-radius: 4px; display: flex; align-items: center; justify-content: center;" title="تعديل">
                             <i data-lucide="edit-3" style="width: 16px; height: 16px;"></i>
@@ -78,7 +92,7 @@
                 <div id="edit-product-modal-{{ $product->id }}" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center; padding: 20px;">
                     <div class="card" style="max-width: 600px; width: 100%; max-height: 90vh; overflow-y: auto;">
                         <h3 style="margin-bottom: 24px;">تعديل الصنف: {{ $product->name }}</h3>
-                        <form action="{{ route('products.update', $product->id) }}" method="POST">
+                        <form action="{{ route('products.update', $product->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="grid grid-cols-2">
@@ -97,6 +111,10 @@
                                 <div class="form-group">
                                     <label class="form-label">سعر مبيع الحبة ₪</label>
                                     <input type="number" step="0.01" name="selling_price_item" class="form-input" value="{{ $product->selling_price_item }}" required>
+                                </div>
+                                <div class="form-group" style="grid-column: span 2;">
+                                    <label class="form-label">صورة المنتج (اختر صورة جديدة لتغيير الحالية)</label>
+                                    <input type="file" name="image" class="form-input" accept="image/*">
                                 </div>
                             </div>
                             <div style="display: flex; gap: 16px; margin-top: 16px;">
