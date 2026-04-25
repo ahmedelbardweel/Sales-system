@@ -1,8 +1,9 @@
-# Render Blueprint for Sales System
 services:
   - type: web
     name: sales-system
     env: php
+    plan: free
+    region: oregon
     buildCommand: bash build.sh
     startCommand: vendor/bin/heroku-php-apache2 public/
     envVars:
@@ -19,6 +20,6 @@ services:
       - key: LOG_CHANNEL
         value: stderr
     disk:
-      name: sqlite-data
+      name: sqlite_data
       mountPath: /var/lib/sqlite
       sizeGB: 1
