@@ -1,11 +1,7 @@
 services:
   - type: web
     name: sales-system
-    env: php
-    plan: free
-    region: oregon
-    buildCommand: bash build.sh
-    startCommand: vendor/bin/heroku-php-apache2 public/
+    env: docker
     envVars:
       - key: APP_KEY
         generateValue: true
@@ -16,6 +12,6 @@ services:
       - key: DB_CONNECTION
         value: sqlite
       - key: DB_DATABASE
-        value: /var/lib/sqlite/database.sqlite
+        value: /var/www/html/storage/app/database.sqlite
       - key: LOG_CHANNEL
         value: stderr
