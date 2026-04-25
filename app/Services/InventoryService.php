@@ -15,7 +15,7 @@ class InventoryService
         $totalAvailable = ($product->cartons_stock * $product->items_per_carton) + $product->items_stock;
 
         if ($quantity > $totalAvailable) {
-            throw new Exception("Insufficient stock for {$product->name}.");
+            throw new Exception("الكمية المتوفرة في المخزن غير كافية للصنف: {$product->name}.");
         }
 
         // Deduct from current items stock first
